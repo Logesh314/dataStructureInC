@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define n 5
+
+
+int arr[n];
+int front = 0,rear = 0,size = 0;
+
+void Enqueue()
+{
+    if(1 == isFull())
+    {
+        printf("\nQueue is full\n");
+        return;
+    }
+    printf("\nEnter the value:");
+    scanf("%d",&arr[rear++]);
+    size++;
+    return;
+}
+
+void Dequeue()
+{
+    if(isEmpty())
+    {
+        printf("\nQueue is empty\n");
+        return;
+    }
+    printf("\nDeleted element is:%d\n",arr[front]);
+    front++;
+    size--;
+}
+
+void Display()
+{
+    if (isEmpty())
+    {
+        printf("\nQueue is empty\n");
+        return;
+    }
+    printf("\nElements of the Queue:\n");
+    for(int i = front;i<=rear;++i){
+        printf("\n%d",arr[i]);
+    }
+}
+
+void Search()
+{
+    if (isEmpty())
+    {
+        printf("\nQueue is empty\n");
+        return;
+    }
+    int a;
+    printf("\nEnter the value to search:");
+    scanf("%d",&a);
+    front++;
+    for(int i = front;i<=rear;++i){
+        if(arr[i] == a){
+            printf("\nThe element is found\n");
+            return;
+        }
+    }
+    printf("\nThe element is NOT found\n");
+}
+
+void Size()
+{
+    printf("\nThe Size of the Queue:%d\n",size);
+    return;
+}
+
+void isFull()
+{
+    if(rear == (n-1)){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+void isEmpty()
+{
+    if(front == rear){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+
+int main()
+{
+    int choice;
+    while(1)
+    {
+        printf("\n------IMPLEMENTATION OF QUEUE USING ARRAY-------\n");
+        printf("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Search\n5. Size of Queue\n6. Exit\n");
+        printf("Enter your choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+        case 1:
+            Enqueue();
+            break;
+        case 2:
+            Dequeue();
+            break;
+        case 3:
+            Display();
+            break;
+        case 4:
+            Search();
+            break;
+        case 5:
+            Size();
+            break;
+        case 6:
+            exit(1);
+            break;
+        default:
+            printf("\nInvalid Choice\n");
+            break;
+        }
+    }
+    return 0;
+}
